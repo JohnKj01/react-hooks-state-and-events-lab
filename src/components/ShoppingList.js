@@ -4,11 +4,14 @@ import Item from "./Item";
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState();
   const handleCategory = (e) => {
-    setSelectedCategory(e.target.value)};
-  let filteredItems = items.filter((items) =>{
-    if (selectedCategory==="All") return true
-    return  items.category === selectedCategory}
-      );
+    setSelectedCategory(e.target.value);
+  };
+  let filteredItems = items.filter((items) => {
+    if (selectedCategory === "All") return items.category;
+    else {
+      return items.category === selectedCategory;
+    }
+  });
 
   return (
     <div className="ShoppingList">
@@ -26,7 +29,7 @@ function ShoppingList({ items }) {
         ))}
       </ul>
     </div>
-  )};
-
+  );
+}
 
 export default ShoppingList;
