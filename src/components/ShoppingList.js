@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import Item from "./Item";
 
 function ShoppingList({ items }) {
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [cartItems, setCartItems] = useState([]);
 
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
-  };
+  }; 
+
+  let filteredItems = items.filter((items) => {
+    if (selectedCategory === "All") return items.category;
+    else {
+      return items.category === selectedCategory;
+    }
+  });
 
   const manageCartItem = (itemKey) => {
     if (!cartItems.includes(itemKey)) {
@@ -18,12 +25,7 @@ function ShoppingList({ items }) {
     }
   };
 
-  let filteredItems = items.filter((items) => {
-    if (selectedCategory === "All") return items.category;
-    else {
-      return items.category === selectedCategory;
-    }
-  });
+
 
   return (
     <div className="ShoppingList">

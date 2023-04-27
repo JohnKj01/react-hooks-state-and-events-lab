@@ -7,8 +7,6 @@ function App() {
   const  handleDarkMode=(e)=>{
     setisDarkMode (isDarkMode=>!isDarkMode)
   }
-  // replace 'false' with a state variable that can be toggled between true and false
-  // this will be used for the Dark Mode Toggle feature
   const appClass = isDarkMode ? "App dark" : "App light"
 
   return (
