@@ -3,9 +3,21 @@ import Item from "./Item";
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState();
+  const [cartItems, setCartItems] = useState([]);
+
   const handleCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
+
+  const manageCartItem = (itemKey) => {
+    if (!cartItems.includes(itemKey)) {
+      setCartItems([...cartItems, itemKey]);
+    } else {
+      const newItems = cartItems.filter((item) => item !== itemKey);
+      setCartItems(newItems);
+    }
+  };
+
   let filteredItems = items.filter((items) => {
     if (selectedCategory === "All") return items.category;
     else {
@@ -25,7 +37,14 @@ function ShoppingList({ items }) {
       </div>
       <ul className="Items">
         {filteredItems.map((item) => (
-          <Item key={item.id} name={item.name} category={item.category} />
+          <Item
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            category={item.category}
+            cartItems={cartItems}
+            manageCartItem={manageCartItem}
+          />
         ))}
       </ul>
     </div>
